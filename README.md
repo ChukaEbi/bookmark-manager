@@ -6,6 +6,10 @@ As a Makers Student
 So that I can keep track of my links
 I would like to bookmark them on a page
 
+As a time-pressed user
+So that I can quickly find web sites I recently bookmarked
+I would like to see links in descending chronological order
+
 As a Makers Student
 So that I can keep up with new websites
 I would like to add links to my bookmark page
