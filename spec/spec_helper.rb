@@ -4,6 +4,7 @@ ENV['RACK_ENV'] = 'test'
 require './app/datamapper_setup'
 require 'database_cleaner'
 require './app/models/link'
+require_relative 'web_helpers'
 require File.join(File.dirname(__FILE__), '../app', 'app.rb')
 
 require 'capybara'

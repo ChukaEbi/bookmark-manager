@@ -1,0 +1,8 @@
+<ul id='links'>
+  <% @links.each do |link| if link.tags.map(&:name).include?(@search_tag) %>
+    <li>
+      Title: <%= link.title %>
+      URL: <%= link.url %>
+    </li>
+  <% end; end %>
+</ul>
