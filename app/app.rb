@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require_relative './models/link'
+require_relative 'datamapper_setup'
 
 class BookmarkManager < Sinatra::Base
 
@@ -17,8 +17,10 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/links' do
-    Link.create(:url => params[:url], :title => params[:title])
-    @links = Link.all
+    link = Link.new(:url => params[:url], :title => params[:title])
+    tag = Tag.create(:name => params[:tags])
+    link.tags << tag
+    link.save
     redirect('/links')
   end
   # start the server if ruby file executed directly
