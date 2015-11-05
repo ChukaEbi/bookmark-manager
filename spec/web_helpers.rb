@@ -4,4 +4,5 @@ def create_link(url,title,tag)
   fill_in :title, with: title
   fill_in :tags, with: tag
   click_button 'Submit'
+  User.create(user_name: 'chuka', email: 'a@b.com', password: 'abc')
 end

@@ -4,11 +4,17 @@ require_relative 'datamapper_setup'
 class BookmarkManager < Sinatra::Base
 
   get '/' do
+    erb(:index)
+  end
+
+  post '/user_sign_up' do
+    User.create(user_name: params[:user_name], email: params[:email], password: params[:password])
     redirect '/links'
   end
 
   get '/links' do
     @links = Link.all
+    @user = User.first
     erb(:views)
   end
 
@@ -29,7 +35,6 @@ class BookmarkManager < Sinatra::Base
     @links = tag ? tag.links : []
     erb(:views)
   end
-
 
   post '/links' do
     link = Link.new(:url => params[:url], :title => params[:title])

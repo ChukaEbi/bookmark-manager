@@ -7,4 +7,6 @@ class Link
 
   has n, :tags, :through => Resource
 
+  belongs_to :user
+
 end
