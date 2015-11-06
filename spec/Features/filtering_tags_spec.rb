@@ -1,5 +1,6 @@
 feature 'filtering multiple tags' do
   scenario 'when several tags, searching by tag' do
+    sign_up
     create_link('http://www.whufc.com','West Ham Homepage','Sports')
     create_link('http://www.facebook.com','Facebook','Social network')
     create_link('http://www.twitter.com','Twitter','Social network')

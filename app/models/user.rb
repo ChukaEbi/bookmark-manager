@@ -5,7 +5,4 @@ class User
   property :user_name, String
   property :email, String
   property :password, String
-
-  has n, :links
-
 end

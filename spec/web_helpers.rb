@@ -1,8 +1,15 @@
 def create_link(url,title,tag)
-  visit ('/links/new')
+  click_button('Add link')
   fill_in :url, with: url
   fill_in :title, with: title
   fill_in :tags, with: tag
   click_button 'Submit'
-  User.create(user_name: 'chuka', email: 'a@b.com', password: 'abc')
+end
+
+def sign_up(user_name='aha', email='aha@aah.com',password='11')
+  visit ('/')
+  fill_in :user_name, with: user_name
+  fill_in :email, with: email
+  fill_in :password, with: password
+  click_button ('sign up')
 end
