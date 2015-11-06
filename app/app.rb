@@ -2,21 +2,23 @@ require 'sinatra/base'
 require_relative 'datamapper_setup'
 
 class BookmarkManager < Sinatra::Base
+  set :session_secret, 'super secret'
 
   get '/' do
     erb(:index)
   end
 
   post '/user_sign_up' do
-    User.create(user_name: params[:user_name],
+    user = User.new(user_name: params[:user_name],
                 email: params[:email],
                 password: params[:password])
+    session[:user_id] = user.id
+    user.save!
     redirect '/links'
   end
 
   get '/links' do
     @links = Link.all
-    @user = User.first
     erb(:views)
   end
 
@@ -35,7 +37,6 @@ class BookmarkManager < Sinatra::Base
   get "/tags/:search_tag" do
     tag = Tag.all(name: params[:search_tag])
     @links = tag ? tag.links : []
-    @user = User.first
     erb(:views)
   end
 
@@ -48,6 +49,12 @@ class BookmarkManager < Sinatra::Base
     link.save
     redirect('/links')
   end
+
+  helpers do
+   def current_user
+     @current_user ||= User.get(session[:user_id])
+   end
+ end
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
